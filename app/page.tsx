@@ -1,113 +1,119 @@
-import Image from "next/image";
+"use client"
+import { useState,useEffect } from "react";
+import server from "./server_component";
+import Development_1 from '@/app/components/Development/Development_1'
+import Development_2 from '@/app/components/Development/Development_2'
+import Development_3 from '@/app/components/Development/Development_3'
+import Development_4 from '@/app/components/Development/Development_4'
+import Development_5 from '@/app/components/Development/Development_5'
+import Business_1 from './components/Business/Business_1';
+import Business_2 from './components/Business/Business_2';
+import Business_3 from './components/Business/Business_3';
+import Business_4 from './components/Business/Business_4';
+import Business_5 from './components/Business/Business_5';
+import Design_1 from './components/Design/Design_1';
+import Design_2 from './components/Design/Design_2';
+import Design_3 from './components/Design/Design_3';
+import Design_4 from './components/Design/Design_4';
+import Lifestyle_1 from './components/Lifestyle/Lifestyle_1';
+import Lifestyle_2 from './components/Lifestyle/Lifestyle_2';
+import Lifestyle_3 from './components/Lifestyle/Lifestyle_3';
+
+(async () => {
+  await server()
+})();
+
 
 export default function Home() {
+
+  const[button_value,change_button_value]=useState("All")
+
+  const renderComponents = () => {
+    switch (button_value) {
+      case "Development":
+        return (
+          <>
+            <Development_1 />
+            <Development_2 />
+            <Development_3 />
+            <Development_4 />
+            <Development_5 />
+          </>
+        );
+      case "Business":
+        return (
+          <>
+            <Business_1 />
+            <Business_2 />
+            <Business_3 />
+            <Business_4 />
+            <Business_5 />
+          </>
+        );
+      case "Design":
+        return (
+          <>
+            <Design_1 />
+            <Design_2 />
+            <Design_3 />
+            <Design_4 />
+          </>
+        );
+      case "Lifestyle":
+        return (
+          <>
+            <Lifestyle_1 />
+            <Lifestyle_2 />
+            <Lifestyle_3 />
+          </>
+        );
+      default:
+        return (
+          <>
+            <Development_1 />
+            <Development_2 />
+            <Development_3 />
+            <Development_4 />
+            <Development_5 />
+            <Business_1 />
+            <Business_2 />
+            <Business_3 />
+            <Business_4 />
+            <Business_5 />
+            <Design_1 />
+            <Design_2 />
+            <Design_3 />
+            <Design_4 />
+            <Lifestyle_1 />
+            <Lifestyle_2 />
+            <Lifestyle_3 />
+          </>
+        );
+    }
+  };
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+  <>
+  <div className="bg-normal-bg">
+
+    <header className="text-3xl font-bolt text-center text-white bg-header-bg py-4">Top Courses</header>
+    <nav className="w-11/12 flex flex-wrap max-w-max space-x-4 gap-y-4 mx-auto py-4 justify-center">
+      <button className="text-lg px-2 py-1 rounded-md font-medium text-white bg-black hover:bg-opacity-50 border-2transition-all duration-300 bg-opacity-60 border-white" onClick={()=>{change_button_value("All")}}>All</button>
+      <button className="text-lg px-2 py-1 rounded-md font-medium text-white bg-black hover:bg-opacity-50 border-2 transition-all duration-300 bg-opacity-40 border-transparent" onClick={()=>{change_button_value("Development")}}>Development</button>
+      <button className="ext-lg px-2 py-1 rounded-md font-medium text-white bg-black hover:bg-opacity-50 border-2 transition-all duration-300 bg-opacity-40 border-transparent" onClick={()=>{change_button_value("Business")}}>Business</button>
+      <button className="text-lg px-2 py-1 rounded-md font-medium text-white bg-black hover:bg-opacity-50 border-2 transition-all duration-300 bg-opacity-40 border-transparent" onClick={()=>{change_button_value("Design")}}>Design</button>
+      <button className="text-lg px-2 py-1 rounded-md font-medium text-white bg-black hover:bg-opacity-50 border-2 transition-all duration-300 bg-opacity-40 border-transparent" onClick={()=>{change_button_value("Lifestyle")}}>Lifestyle</button>
+    </nav>
+
+    <div className="w-11/12 max-w-[1200px] mx-auto flex flex-wrap justify-center items-center min-h-[50vh]">
+      <div className="flex flex-wrap justify-center gap-4 mb-4">
+
+      {renderComponents()}
       </div>
+    </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+  </div>
+  </>  
   );
 }
